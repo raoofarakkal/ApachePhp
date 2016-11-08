@@ -32,3 +32,13 @@ ADD apache/config/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
 # By default start up apache in the foreground, override with /bin/bash for interative.
 CMD /usr/sbin/apache2ctl -D FOREGROUND
+
+
+# Install dependencies
+RUN apt-get -y install iputils-ping
+
+RUN apt-get -y install git
+
+RUN apt-get update && \
+    apt-get -y install curl nano && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
